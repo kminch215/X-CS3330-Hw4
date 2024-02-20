@@ -28,7 +28,7 @@ public abstract class Vehicle {
 					+ "]";
 		}
 		
-		//Vehicle constructor
+		//parameterized constructor
 		public Vehicle(String brand, String make, long modelYear, double price, VehicleColor color, FuelType fuelType,
 				double mileage, double mass, int cylinders, double gasTankCapacity, StartMechanism startType) {
 			this.brand = brand;
@@ -42,6 +42,21 @@ public abstract class Vehicle {
 			this.cylinders = cylinders;
 			this.gasTankCapacity = gasTankCapacity;
 			this.startType = startType;
+		}
+		
+		//copy constructor for Vehicle
+		public Vehicle(Vehicle vehicle) {
+			this.brand = vehicle.brand;
+			this.make = vehicle.make;
+			this.modelYear = vehicle.modelYear;
+			this.price = vehicle.price;
+			this.color = vehicle.color;
+			this.fuelType = vehicle.fuelType;
+			this.mileage = vehicle.mileage;
+			this.mass = vehicle.mass;
+			this.cylinders = vehicle.cylinders;
+			this.gasTankCapacity = vehicle.gasTankCapacity;
+			this.startType = vehicle.startType;
 		}
 		
 }

@@ -4,20 +4,17 @@ import java.time.Year;
 
 public class Truck extends Vehicle {
 
-	//copy constructor for Truck
-	public Truck(Truck truck) {
-		super(truck);
-		brand = truck.brand;
-		make = truck.make;
-		modelYear = truck.modelYear;
-		price = truck.price;
-		color = truck.color;
-		fuelType = truck.fuelType;
-		mileage = truck.mileage;
-		mass = truck.mass;
-		cylinders = truck.cylinders;
-		gasTankCapacity = truck.gasTankCapacity;
-		startType = truck.startType;
+	//parameterized constructor
+	public Truck(String brand, String make, long modelYear, double price, VehicleColor color, FuelType fuelType,
+			double mileage, double mass, int cylinders, double gasTankCapacity, StartMechanism startType) {
+		super(brand, make, modelYear, price, color, fuelType, mileage, mass, cylinders, gasTankCapacity, startType);
+		// TODO Auto-generated constructor stub
+	}
+
+	//copy constructor
+	public Truck(Vehicle vehicle) {
+		super(vehicle);
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override
