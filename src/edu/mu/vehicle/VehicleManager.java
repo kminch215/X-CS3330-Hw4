@@ -61,9 +61,10 @@ public class VehicleManager {
 	            StartMechanism startMechanism = StartMechanism.valueOf(start);
 	            
 	            
-	            //System.out.println("Type: " + vehicleType + ", Model: " + vehicleModel + ", Make: " + vehicleMake + 
-	            //		", Year: " + modelYear + ", Price: " + price + ", Color: " + enumColor);
-	            
+//	            System.out.println("Type: " + vehicleType + ", Model: " + vehicleModel + ", Make: " + vehicleMake + 
+//	            		", Year: " + modelYear + ", Price: " + price + ", Color: " + enumColor + ", Fuel Type: " + fuelType + ", Mileage: " + mileage 
+//	            		+ ", Mass: " + mass + ", Cylinders: " + cylinders + ", Gas Tank: " + gasTankCapacity + ", Start Mechansism: " + startMechanism);
+//	            
 	            if(vehicleType.equals("Car")) {
                 	vehicle = new Car(vehicleModel, vehicleMake, modelYear, price, enumColor, fuelType, mileage, mass, cylinders, gasTankCapacity, startMechanism);
                 }
@@ -99,4 +100,9 @@ public class VehicleManager {
 		}
 		return false;
 	}
+    
+    public VehicleManager(String fileName) {
+    	fileName = vehicleFilePath; 
+    	VehicleManager.getInstance().readFromFile(fileName);
+    	}
 }
