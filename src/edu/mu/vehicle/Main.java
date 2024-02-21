@@ -5,7 +5,10 @@ public class Main {
 	public static void main(String[] args) {
 		VehicleManager.getInstance();
 	    
-	    VehicleManager manager = new VehicleManager("vehicleList.csv");
+		boolean error = VehicleManager.getInstance().initializeStock();
+		if(!error) {
+			System.out.println("Error initializing vehicle stock from file");
+		}
 
 	}
 
