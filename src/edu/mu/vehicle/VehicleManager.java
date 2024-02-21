@@ -110,10 +110,55 @@ public class VehicleManager {
     	distance = VehicleManager.distance;
     	fuelPrice = VehicleManager.fuelPrice;
     	ArrayList<Vehicle> myVehicles = new ArrayList<Vehicle>();
+    	double fuelEfficiency1 = 0.0;
+		double fuelEfficiency2 = 0.0;
     	for(Vehicle vehicle: VehicleManager.getInstance().getArray()) {
-    		double fuelEfficiency1 = 0.0;
-    		double fuelEfficiency2 = 0.0;
-    		Vehicle max = null;
+    		
+    		if(vehicle instanceof Car) {
+    			fuelEfficiency1 =  vehicle.getCylinders() * vehicle.getGasTankCapacity() * fuelPrice / distance * 0.003;
+            }
+            else if(vehicle instanceof MotorBike)
+            {
+            	fuelEfficiency1 =  vehicle.getCylinders() * vehicle.getGasTankCapacity() * fuelPrice / distance * 0.001;
+            }
+            else if(vehicle instanceof SUV)
+            {
+            	fuelEfficiency1 =  vehicle.getCylinders() * vehicle.getGasTankCapacity() * fuelPrice / distance * 0.05;
+            }
+            else if(vehicle instanceof Truck)
+            {
+            	fuelEfficiency1 =  vehicle.getCylinders() * vehicle.getGasTankCapacity() * fuelPrice / distance * 0.1;
+            }
+    		System.out.println(vehicle.toString()+"\nFuel Efficiency: " + fuelEfficiency1);
+    		
+    		if(fuelEfficiency1 > fuelEfficiency2) {
+    			myVehicles.clear();
+    			myVehicles.add(vehicle);
+    			fuelEfficiency2 = fuelEfficiency1;
+    		}
+    		else if(fuelEfficiency1 == fuelEfficiency2) {
+    			myVehicles.add(vehicle);
+    		}
+    		
+    		
+//    		for(Vehicle vehicle1 : myVehicles) {
+//        		System.out.println(vehicle1.toString());
+//    		}
+
+    		
+    	}
+		return myVehicles;
+    	
+    }
+    
+    public ArrayList<Vehicle> getVehicleWithLowestFuelEfficiency(double distance, double fuelPrice){
+    	distance = VehicleManager.distance;
+    	fuelPrice = VehicleManager.fuelPrice;
+    	ArrayList<Vehicle> myVehicles = new ArrayList<Vehicle>();
+		double fuelEfficiency1 = 0.0;
+		double fuelEfficiency2 = 100.0; //initialized to value larger than will ever occur
+    	for(Vehicle vehicle: VehicleManager.getInstance().getArray()) {
+
     		if(vehicle instanceof Car) {
     			fuelEfficiency1 =  vehicle.getCylinders() * vehicle.getGasTankCapacity() * fuelPrice / distance * 0.003;
             }
@@ -130,16 +175,15 @@ public class VehicleManager {
             	fuelEfficiency1 =  vehicle.getCylinders() * vehicle.getGasTankCapacity() * fuelPrice / distance * 0.1;
             }
     		
-    		if(fuelEfficiency1 > fuelEfficiency2) {
+    		if(fuelEfficiency1 < fuelEfficiency2) {
     			myVehicles.clear();
     			myVehicles.add(vehicle);
+    			fuelEfficiency2 = fuelEfficiency1;
     		}
     		else if(fuelEfficiency1 == fuelEfficiency2) {
     			myVehicles.add(vehicle);
-    		}
-    		
-    		fuelEfficiency2 = fuelEfficiency1;
-    		
+    		}	
+
     	}
 		return myVehicles;
     	
