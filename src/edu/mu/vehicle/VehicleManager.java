@@ -27,11 +27,10 @@ public class VehicleManager {
        return this.vehicleList;
      }
     
-    public boolean readFromFile(String fileName) {
-    	fileName = vehicleFilePath;
+    public boolean initializeStock() {
     	Vehicle vehicle = null;
     	try {
-	        File file = new File(fileName);
+	        File file = new File(vehicleFilePath);
 	        Scanner scanner = new Scanner(file);
             
 	        if (scanner.hasNextLine()) {
@@ -85,7 +84,7 @@ public class VehicleManager {
 	        }
 	        scanner.close();
 	    } catch (FileNotFoundException e) {
-	        System.out.println("File not found: " + fileName);
+	        System.out.println("File not found: " + vehicleFilePath);
 	        e.printStackTrace();
 	        return false;
 	    }
@@ -100,9 +99,4 @@ public class VehicleManager {
 		}
 		return false;
 	}
-    
-    public VehicleManager(String fileName) {
-    	fileName = vehicleFilePath; 
-    	VehicleManager.getInstance().readFromFile(fileName);
-    	}
 }
