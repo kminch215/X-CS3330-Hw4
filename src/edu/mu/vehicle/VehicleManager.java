@@ -8,6 +8,8 @@ import java.util.Scanner;
 public class VehicleManager {
 
 	private final static String vehicleFilePath = "vehicleList.csv";
+	private final static double distance = 300;
+	private final static double fuelPrice = 3.25;
 	
 	private static VehicleManager instance;
     private ArrayList<Vehicle> vehicleList = null;
@@ -99,4 +101,47 @@ public class VehicleManager {
 		}
 		return false;
 	}
+    
+//    Calculates the fuel efficiencies for each vehicle in the vehicle list and returns the vehicle
+//    with the highest fuel efficiency.
+//    If multiple vehicles have the same highest fuel efficiency, returns vehicles with the same
+//    highest fuel efficiency in an ArrayList.
+    public ArrayList<Vehicle> getVehicleWithHighestFuelEfficiency(double distance, double fuelPrice){
+    	distance = VehicleManager.distance;
+    	fuelPrice = VehicleManager.fuelPrice;
+    	ArrayList<Vehicle> myVehicles = new ArrayList<Vehicle>();
+    	for(Vehicle vehicle: VehicleManager.getInstance().getArray()) {
+    		double fuelEfficiency1 = 0.0;
+    		double fuelEfficiency2 = 0.0;
+    		Vehicle max = null;
+    		if(vehicle instanceof Car) {
+    			fuelEfficiency1 =  vehicle.getCylinders() * vehicle.getGasTankCapacity() * fuelPrice / distance * 0.003;
+            }
+            else if(vehicle instanceof MotorBike)
+            {
+            	fuelEfficiency1 =  vehicle.getCylinders() * vehicle.getGasTankCapacity() * fuelPrice / distance * 0.001;
+            }
+            else if(vehicle instanceof SUV)
+            {
+            	fuelEfficiency1 =  vehicle.getCylinders() * vehicle.getGasTankCapacity() * fuelPrice / distance * 0.05;
+            }
+            else if(vehicle instanceof Truck)
+            {
+            	fuelEfficiency1 =  vehicle.getCylinders() * vehicle.getGasTankCapacity() * fuelPrice / distance * 0.1;
+            }
+    		
+    		if(fuelEfficiency1 > fuelEfficiency2) {
+    			myVehicles.clear();
+    			myVehicles.add(vehicle);
+    		}
+    		else if(fuelEfficiency1 == fuelEfficiency2) {
+    			myVehicles.add(vehicle);
+    		}
+    		
+    		fuelEfficiency2 = fuelEfficiency1;
+    		
+    	}
+		return myVehicles;
+    	
+    }
 }
