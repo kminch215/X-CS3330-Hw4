@@ -26,6 +26,13 @@ public class Main {
 		for(Vehicle vehicle : worstFuelEfficiency) {
 			System.out.println(vehicle.toString());
 		}
+		
+		double averageFuelEfficiencyOfSUVs = VehicleManager.getInstance().getAverageFuelEfficiencyOfSUVs(300, 3.25);
+	        if (averageFuelEfficiencyOfSUVs == -1.0) {
+	            System.out.println("\nNo SUVs in the list to calculate average fuel efficiency.");
+	        } else {
+	            System.out.println("\nAverage Fuel Efficiency of SUVs: " + averageFuelEfficiencyOfSUVs);
+	        }
 	}
 
 }
