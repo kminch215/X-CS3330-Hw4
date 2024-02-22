@@ -118,6 +118,27 @@ public class VehicleManager {
 		}
 		return false;
 	}
+
+    public boolean removeVehicle(Vehicle vehicle) {
+		if (!vehicleList.contains(vehicle)){
+			vehicleList.remove(vehicle);
+			return true;
+		}
+		return false;
+	}
+
+	private boolean isVehicleType(Vehicle v, Class clazz) {
+		if (clazz == Car.class && v instanceof Car) {
+			return true;
+		} else if (clazz == MotorBike.class && v instanceof MotorBike) {
+			return true;
+		} else if (clazz == SUV.class && v instanceof SUV) {
+			return true;
+		} else if (clazz == Truck.class && v instanceof Truck) {
+			return true;
+		}
+		return false;
+	}
     
 //    Calculates the fuel efficiencies for each vehicle in the vehicle list and returns the vehicle
 //    with the highest fuel efficiency.
