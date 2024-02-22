@@ -20,6 +20,39 @@ public class VehicleManager {
 
         return instance;
     }
+
+		private VehicleManager() {
+        vehicleList = new ArrayList<Vehicle>();
+    }
+	public void displayAllCarInformation() {
+		System.out.println(/*Information, MaintenceCost, FuelEffeciency, VehicleStart, CarsPresentInVehileList*/);
+		System.out.println(/*if vehicle not found, print error*/);
+	}
+	public void displayAllTruckInformation() {
+		System.out.println(/*Information, MaintenceCost, FuelEffeciency, VehicleStart, TrucksPresentInVehileList*/);
+		System.out.println(/*if vehicle not found, print error*/);
+	}
+	public void displayAllSUVInformation() {
+		System.out.println(/*Information, MaintenceCost, FuelEffeciency, VehicleStart, SUVPresentInVehileList*/);
+		System.out.println(/*if vehicle not found, print error*/);
+	}
+	public void displayAllMotorBikeInformation() {
+		System.out.println(/*Information, MaintenceCost, FuelEffeciency, VehicleStart, MotorBikePresentInVehileList*/);
+		System.out.println(/*if vehicle not found, print error*/);
+	}
+	public void displayVehicleInformation(Vehicle v) {
+		System.out.println(/*Information, MaintenceCost, FuelEffeciency, VehicleStart, Vehicle?PresentInVehileList*/);
+		System.out.println(/*if vehicle not found, print error*/);
+	}
+	public void displayAllVehicleInformation() {
+		System.out.println(/*Information, MaintenceCost, FuelEffeciency, VehicleStart, VehileList*/);
+		System.out.println(/*if vehicle list empty, print*/);
+	}
+	public ArrayList<Vehicle> getVehicleWithLowestMaintenceCost(double distance) {
+		//calculate the maintenance cost of each vehicle in the list and return the lowest
+		//if multiple vehicles have the same cost, randomly return
+		return null;
+	}
 	
 	 private VehicleManager() {
         vehicleList = new ArrayList<Vehicle>();
@@ -187,5 +220,11 @@ public class VehicleManager {
     	}
 		return myVehicles;
     	
+    }
+	public double getAverageFuelEfficiencyOfSUVs(double distance, double fuelPrice) {
+		return fuelPrice;
+    	//Calculate the average/mean of the fuel efficiency of SUVs in the vehicle list.
+    	//Use the isVehicleType(Vehicle v, Class clazz) method.
+    	//If no SUVs exist in the list return -1.0 as an error code that indicates there is no SUVs in the list to calculate the average fuel efficiency.
     }
 }
