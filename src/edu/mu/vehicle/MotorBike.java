@@ -16,7 +16,7 @@ public class MotorBike extends Vehicle {
 	}
 
 	@Override
-	public double calculateMaintenaceCost(double distance) {
+	public double calculateMaintenanceCost(double distance) {
 		double maintenanceCost = distance * mass * (Year.now().getValue() - modelYear) * cylinders * 0.0002;
 		
 		return maintenanceCost;
