@@ -134,6 +134,14 @@ public class VehicleManager {
 		}
 		return false;
 	}
+
+    public boolean removeVehicle(Vehicle vehicle) {
+		if (!vehicleList.contains(vehicle)){
+			vehicleList.remove(vehicle);
+			return true;
+		}
+		return false;
+	}	
     
 //    Calculates the fuel efficiencies for each vehicle in the vehicle list and returns the vehicle
 //    with the highest fuel efficiency.
