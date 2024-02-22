@@ -127,7 +127,7 @@ public class VehicleManager {
 		return false;
 	}
 
-	private boolean isVehicleType(Vehicle v, Class clazz) {
+    private boolean isVehicleType(Vehicle v, Class clazz) {
 		if (clazz == Car.class && v instanceof Car) {
 			return true;
 		} else if (clazz == MotorBike.class && v instanceof MotorBike) {
@@ -138,6 +138,16 @@ public class VehicleManager {
 			return true;
 		}
 		return false;
+	}
+
+    public int getNumberOfVehiclesByType(Class clazz) {
+    	int count = 0;
+    	for (Vehicle vehicle : vehicleList) {
+        	if (isVehicleType(vehicle, clazz)) {
+            		count++;
+        	}
+    	}
+    	return count;
 	}
     
 //    Calculates the fuel efficiencies for each vehicle in the vehicle list and returns the vehicle
