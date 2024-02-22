@@ -20,47 +20,31 @@ public class VehicleManager {
 
         return instance;
     }
-
-		private VehicleManager() {
+	
+	private VehicleManager() {
         vehicleList = new ArrayList<Vehicle>();
     }
-	public void displayAllCarInformation() {
-		System.out.println(/*Information, MaintenceCost, FuelEffeciency, VehicleStart, CarsPresentInVehileList*/);
-		System.out.println(/*if vehicle not found, print error*/);
-	}
-	public void displayAllTruckInformation() {
-		System.out.println(/*Information, MaintenceCost, FuelEffeciency, VehicleStart, TrucksPresentInVehileList*/);
-		System.out.println(/*if vehicle not found, print error*/);
-	}
-	public void displayAllSUVInformation() {
-		System.out.println(/*Information, MaintenceCost, FuelEffeciency, VehicleStart, SUVPresentInVehileList*/);
-		System.out.println(/*if vehicle not found, print error*/);
-	}
-	public void displayAllMotorBikeInformation() {
-		System.out.println(/*Information, MaintenceCost, FuelEffeciency, VehicleStart, MotorBikePresentInVehileList*/);
-		System.out.println(/*if vehicle not found, print error*/);
-	}
-	public void displayVehicleInformation(Vehicle v) {
-		System.out.println(/*Information, MaintenceCost, FuelEffeciency, VehicleStart, Vehicle?PresentInVehileList*/);
-		System.out.println(/*if vehicle not found, print error*/);
-	}
-	public void displayAllVehicleInformation() {
-		System.out.println(/*Information, MaintenceCost, FuelEffeciency, VehicleStart, VehileList*/);
-		System.out.println(/*if vehicle list empty, print*/);
-	}
-	public ArrayList<Vehicle> getVehicleWithLowestMaintenceCost(double distance) {
-		//calculate the maintenance cost of each vehicle in the list and return the lowest
-		//if multiple vehicles have the same cost, randomly return
-		return null;
-	}
 	
-	 private VehicleManager() {
-        vehicleList = new ArrayList<Vehicle>();
-      }
+	
+	public ArrayList<Vehicle> getVehicleWithLowestMaintenceCost(double distance) {
+	    ArrayList<Vehicle> cheapestVehicles = new ArrayList<>();
+	    double lowestCost = Double.MAX_VALUE; // Initialize to maximum value
+	    for (Vehicle vehicle : vehicleList) {
+	        double cost = vehicle.calculateMaintenanceCost(distance);
+	        if (cost < lowestCost) {
+	            cheapestVehicles.clear(); // Clear previous results
+	            cheapestVehicles.add(vehicle);
+	            lowestCost = cost;
+	        } else if (cost == lowestCost) {
+	            cheapestVehicles.add(vehicle); // Add vehicles with same cost
+	        }
+	    }
+	    return cheapestVehicles;
+	}
 	 
     public ArrayList<Vehicle> getArray() {
        return this.vehicleList;
-     }
+    }
     
     public boolean initializeStock() {
     	Vehicle vehicle = null;
@@ -130,27 +114,6 @@ public class VehicleManager {
     public boolean addVehicle(Vehicle vehicle) {
 		if (!vehicleList.contains(vehicle)) {
 			vehicleList.add(vehicle);
-			return true;
-		}
-		return false;
-	}
-
-    public boolean removeVehicle(Vehicle vehicle) {
-		if (!vehicleList.contains(vehicle)){
-			vehicleList.remove(vehicle);
-			return true;
-		}
-		return false;
-	}
-
-    private boolean isVehicleType(Vehicle v, Class clazz) {
-		if (clazz == Car.class && v instanceof Car) {
-			return true;
-		} else if (clazz == MotorBike.class && v instanceof MotorBike) {
-			return true;
-		} else if (clazz == SUV.class && v instanceof SUV) {
-			return true;
-		} else if (clazz == Truck.class && v instanceof Truck) {
 			return true;
 		}
 		return false;
@@ -242,10 +205,52 @@ public class VehicleManager {
 		return myVehicles;
     	
     }
-	public double getAverageFuelEfficiencyOfSUVs(double distance, double fuelPrice) {
-		return fuelPrice;
-    	//Calculate the average/mean of the fuel efficiency of SUVs in the vehicle list.
-    	//Use the isVehicleType(Vehicle v, Class clazz) method.
-    	//If no SUVs exist in the list return -1.0 as an error code that indicates there is no SUVs in the list to calculate the average fuel efficiency.
+    
+    public double getAverageFuelEfficiencyOfSUVs(double distance, double fuelPrice) {
+        int suvCount = 0;
+        double totalFuelEfficiency = 0.0;
+        
+        // Iterate over all vehicles in the vehicle list
+        for (Vehicle vehicle : vehicleList) {
+            // Check if the vehicle is an SUV
+            if (vehicle instanceof SUV) {
+                // Increment count of SUVs
+                suvCount++;
+                // Calculate fuel efficiency of the SUV and add to total
+                totalFuelEfficiency += vehicle.calculateFuelEfficiency(distance, fuelPrice);
+            }
+        }
+        
+        // If no SUVs exist in the list, return -1.0 as an error code
+        if (suvCount == 0) {
+            return -1.0;
+        }
+        
+        // Calculate average fuel efficiency of SUVs
+        double averageFuelEfficiency = totalFuelEfficiency / suvCount;
+        
+        return averageFuelEfficiency;
     }
+
+
+    public void displayAllCarInformation() {
+        boolean foundCar = false;
+
+        for (Vehicle vehicle : vehicleList) {
+            if (vehicle instanceof Car) {
+                foundCar = true;
+
+                System.out.println(vehicle.toString());
+                
+                System.out.println("Maintenance Cost: " + vehicle.calculateMaintenanceCost(distance));
+                
+                System.out.println("Fuel Efficiency: " + vehicle.calculateFuelEfficiency(distance, fuelPrice));
+            }
+        }
+        if (!foundCar) {
+            System.out.println("No cars found.");
+        }
+
+    }
+    
 }
