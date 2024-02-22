@@ -149,7 +149,24 @@ public class VehicleManager {
     	}
     	return count;
 	}
-    
+
+    public Vehicle getVehicleWithHighestMaintenanceCost(double distance) {
+    Random random = new Random();
+    Vehicle vehicleWithHighestMaintenanceCost = null;
+    double highestMaintenanceCost = Double.MIN_VALUE; // Initialize to minimum value
+
+    for (Vehicle vehicle : vehicleList) {
+        double maintenanceCost = vehicle.calculateMaintenanceCost(distance);
+        if (maintenanceCost > highestMaintenanceCost) {
+            vehicleWithHighestMaintenanceCost = vehicle;
+            highestMaintenanceCost = maintenanceCost;
+        } else if (maintenanceCost == highestMaintenanceCost) {
+            if (random.nextBoolean()) {
+                vehicleWithHighestMaintenanceCost = vehicle;
+            }
+        }
+    }
+	
 //    Calculates the fuel efficiencies for each vehicle in the vehicle list and returns the vehicle
 //    with the highest fuel efficiency.
 //    If multiple vehicles have the same highest fuel efficiency, returns vehicles with the same
