@@ -109,7 +109,7 @@ public class VehicleManager {
 	}
 
     public boolean removeVehicle(Vehicle vehicle) {
-		if (!vehicleList.contains(vehicle)){
+		if (vehicleList.contains(vehicle)){
 			vehicleList.remove(vehicle);
 			return true;
 		}
@@ -151,22 +151,7 @@ public class VehicleManager {
 		double fuelEfficiency2 = 0.0;
     	for(Vehicle vehicle: VehicleManager.getInstance().getArray()) {
     		
-    		if(vehicle instanceof Car) {
-    			fuelEfficiency1 =  vehicle.getCylinders() * vehicle.getGasTankCapacity() * fuelPrice / distance * 0.003;
-            }
-            else if(vehicle instanceof MotorBike)
-            {
-            	fuelEfficiency1 =  vehicle.getCylinders() * vehicle.getGasTankCapacity() * fuelPrice / distance * 0.001;
-            }
-            else if(vehicle instanceof SUV)
-            {
-            	fuelEfficiency1 =  vehicle.getCylinders() * vehicle.getGasTankCapacity() * fuelPrice / distance * 0.05;
-            }
-            else if(vehicle instanceof Truck)
-            {
-            	fuelEfficiency1 =  vehicle.getCylinders() * vehicle.getGasTankCapacity() * fuelPrice / distance * 0.1;
-            }
-//    		System.out.println(vehicle.toString()+"\nFuel Efficiency: " + fuelEfficiency1);
+    		fuelEfficiency1 = vehicle.calculateFuelEfficiency(distance, fuelPrice);
     		
     		if(fuelEfficiency1 > fuelEfficiency2) {
     			myVehicles.clear();
@@ -196,21 +181,7 @@ public class VehicleManager {
 		double fuelEfficiency2 = 100.0; //initialized to value larger than will ever occur
     	for(Vehicle vehicle: VehicleManager.getInstance().getArray()) {
 
-    		if(vehicle instanceof Car) {
-    			fuelEfficiency1 =  vehicle.getCylinders() * vehicle.getGasTankCapacity() * fuelPrice / distance * 0.003;
-            }
-            else if(vehicle instanceof MotorBike)
-            {
-            	fuelEfficiency1 =  vehicle.getCylinders() * vehicle.getGasTankCapacity() * fuelPrice / distance * 0.001;
-            }
-            else if(vehicle instanceof SUV)
-            {
-            	fuelEfficiency1 =  vehicle.getCylinders() * vehicle.getGasTankCapacity() * fuelPrice / distance * 0.05;
-            }
-            else if(vehicle instanceof Truck)
-            {
-            	fuelEfficiency1 =  vehicle.getCylinders() * vehicle.getGasTankCapacity() * fuelPrice / distance * 0.1;
-            }
+    		fuelEfficiency1 = vehicle.calculateFuelEfficiency(distance, fuelPrice);
     		
     		if(fuelEfficiency1 < fuelEfficiency2) {
     			myVehicles.clear();
@@ -277,6 +248,7 @@ public class VehicleManager {
  	
  	    for (Vehicle vehicle : vehicleList) {
  	        double maintenanceCost = vehicle.calculateMaintenanceCost(distance);
+// 	        System.out.println(vehicle.toString() + '\n' + "Maintenance Cost: " + maintenanceCost);
  	        if (maintenanceCost > HighestMaintenanceCost) {
  	        	vehicleWithHighestMaintenanceCost = vehicle;
  	        	HighestMaintenanceCost = maintenanceCost;
