@@ -28,23 +28,6 @@ public class VehicleManager {
 	private VehicleManager() {
         vehicleList = new ArrayList<Vehicle>();
     }
-	
-	
-	public ArrayList<Vehicle> getVehicleWithLowestMaintenceCost(double distance) {
-	    ArrayList<Vehicle> cheapestVehicles = new ArrayList<>();
-	    double lowestCost = Double.MAX_VALUE; // Initialize to maximum value
-	    for (Vehicle vehicle : vehicleList) {
-	        double cost = vehicle.calculateMaintenanceCost(distance);
-	        if (cost < lowestCost) {
-	            cheapestVehicles.clear(); // Clear previous results
-	            cheapestVehicles.add(vehicle);
-	            lowestCost = cost;
-	        } else if (cost == lowestCost) {
-	            cheapestVehicles.add(vehicle); // Add vehicles with same cost
-	        }
-	    }
-	    return cheapestVehicles;
-	}
 	 
     public ArrayList<Vehicle> getArray() {
        return this.vehicleList;
@@ -109,7 +92,6 @@ public class VehicleManager {
 //	        if(file.delete()) {
 //	        	System.out.println("File successfully deleted!");
 //	        }
-	        
 	    } catch (FileNotFoundException e) {
 	        System.out.println("File not found");
 	        e.printStackTrace();
@@ -287,8 +269,45 @@ public class VehicleManager {
         double averageFuelEfficiency = totalFuelEfficiency / suvCount;
         
         return averageFuelEfficiency;
-    }
-
+    	}
+	public Vehicle getVehicleWithLowestMaintenanceCost(double distance){
+    	Random random = new Random();
+ 	    Vehicle vehicleWithLowestMaintenanceCost = null;
+ 	    double LowestMaintenanceCost = Double.MIN_VALUE; // Initialize to minimum value
+ 	
+ 	    for (Vehicle vehicle : vehicleList) {
+ 	        double maintenanceCost = vehicle.calculateMaintenanceCost(distance);
+ 	        if (maintenanceCost > LowestMaintenanceCost) {
+ 	        	vehicleWithLowestMaintenanceCost = vehicle;
+ 	        	LowestMaintenanceCost = maintenanceCost;
+ 	        } else if (maintenanceCost == LowestMaintenanceCost) {
+ 	            if (random.nextBoolean()) {
+ 	                vehicleWithLowestMaintenanceCost = vehicle;
+ 	        		return vehicleWithLowestMaintenanceCost;
+ 	            }
+ 	          }
+ 	        }
+ 		return vehicleWithLowestMaintenanceCost;
+     }
+    public Vehicle getVehicleWithHighestMaintenanceCost(double distance){
+    	Random random = new Random();
+ 	    Vehicle vehicleWithHighestMaintenanceCost = null;
+ 	    double HighestMaintenanceCost = Double.MIN_VALUE;
+ 	
+ 	    for (Vehicle vehicle : vehicleList) {
+ 	        double maintenanceCost = vehicle.calculateMaintenanceCost(distance);
+ 	        if (maintenanceCost < HighestMaintenanceCost) {
+ 	        	vehicleWithHighestMaintenanceCost = vehicle;
+ 	        	HighestMaintenanceCost = maintenanceCost;
+ 	        } else if (maintenanceCost == HighestMaintenanceCost) {
+ 	            if (random.nextBoolean()) {
+ 	                vehicleWithHighestMaintenanceCost = vehicle;
+ 	        		return vehicleWithHighestMaintenanceCost;
+ 	            }
+ 	          }
+ 	        }
+ 		return vehicleWithHighestMaintenanceCost;
+     }
 
     public void displayAllCarInformation() {
         boolean foundCar = false;
