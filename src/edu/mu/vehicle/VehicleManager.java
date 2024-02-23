@@ -1,8 +1,12 @@
 package edu.mu.vehicle;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 public class VehicleManager {
@@ -102,12 +106,15 @@ public class VehicleManager {
 	            VehicleManager.getInstance().addVehicle(vehicle);
 	        }
 	        scanner.close();
+//	        if(file.delete()) {
+//	        	System.out.println("File successfully deleted!");
+//	        }
+	        
 	    } catch (FileNotFoundException e) {
-	        System.out.println("File not found: " + vehicleFilePath);
+	        System.out.println("File not found");
 	        e.printStackTrace();
 	        return false;
 	    }
-    	
     	return true;
     }
     
@@ -151,20 +158,22 @@ public class VehicleManager {
 	}
 
     public Vehicle getVehicleWithHighestMaintenanceCost(double distance) {
-    Random random = new Random();
-    Vehicle vehicleWithHighestMaintenanceCost = null;
-    double highestMaintenanceCost = Double.MIN_VALUE; // Initialize to minimum value
-
-    for (Vehicle vehicle : vehicleList) {
-        double maintenanceCost = vehicle.calculateMaintenanceCost(distance);
-        if (maintenanceCost > highestMaintenanceCost) {
-            vehicleWithHighestMaintenanceCost = vehicle;
-            highestMaintenanceCost = maintenanceCost;
-        } else if (maintenanceCost == highestMaintenanceCost) {
-            if (random.nextBoolean()) {
-                vehicleWithHighestMaintenanceCost = vehicle;
-            }
-        }
+	    Random random = new Random();
+	    Vehicle vehicleWithHighestMaintenanceCost = null;
+	    double highestMaintenanceCost = Double.MIN_VALUE; // Initialize to minimum value
+	
+	    for (Vehicle vehicle : vehicleList) {
+	        double maintenanceCost = vehicle.calculateMaintenanceCost(distance);
+	        if (maintenanceCost > highestMaintenanceCost) {
+	            vehicleWithHighestMaintenanceCost = vehicle;
+	            highestMaintenanceCost = maintenanceCost;
+	        } else if (maintenanceCost == highestMaintenanceCost) {
+	            if (random.nextBoolean()) {
+	                vehicleWithHighestMaintenanceCost = vehicle;
+	            }
+	          }
+	        }
+		return vehicleWithHighestMaintenanceCost;
     }
 	
 //    Calculates the fuel efficiencies for each vehicle in the vehicle list and returns the vehicle
@@ -194,7 +203,7 @@ public class VehicleManager {
             {
             	fuelEfficiency1 =  vehicle.getCylinders() * vehicle.getGasTankCapacity() * fuelPrice / distance * 0.1;
             }
-    		System.out.println(vehicle.toString()+"\nFuel Efficiency: " + fuelEfficiency1);
+//    		System.out.println(vehicle.toString()+"\nFuel Efficiency: " + fuelEfficiency1);
     		
     		if(fuelEfficiency1 > fuelEfficiency2) {
     			myVehicles.clear();
@@ -301,4 +310,48 @@ public class VehicleManager {
 
     }
     
+    public boolean saveVehicleList() {
+		try {
+			FileWriter file = new FileWriter(vehicleFilePath);
+			BufferedWriter bw = new BufferedWriter(file);
+			bw.write("Type,Model,Make,ModelYear,Price,Color,FuelType,Mileage,Mass,Cylinders,GasTankCapacity,StartType");
+			bw.newLine();
+			for(Vehicle vehicle: VehicleManager.getInstance().getArray()) {
+				if(vehicle instanceof Car) {
+					String type = "Car";
+					bw.write(type + "," + vehicle.getBrand() + "," + vehicle.getMake() + "," + vehicle.getModelYear() + "," + vehicle.getPrice() + "," + vehicle.getColor() + "," + vehicle.getFuelType()
+					 + "," + vehicle.getMileage() + "," + vehicle.getMass() + "," + vehicle.getCylinders() + "," + vehicle.getGasTankCapacity() + "," + vehicle.getStartType());
+					bw.newLine();
+	            }
+	            else if(vehicle instanceof MotorBike)
+	            {
+	            	String type = "MotorBike";
+					bw.write(type + "," + vehicle.getBrand() + "," + vehicle.getMake() + "," + vehicle.getModelYear() + "," + vehicle.getPrice() + "," + vehicle.getColor() + "," + vehicle.getFuelType()
+					 + "," + vehicle.getMileage() + "," + vehicle.getMass() + "," + vehicle.getCylinders() + "," + vehicle.getGasTankCapacity() + "," + vehicle.getStartType());
+					bw.newLine();
+	            }
+	            else if(vehicle instanceof SUV)
+	            {
+	            	String type = "SUV";
+					bw.write(type + "," + vehicle.getBrand() + "," + vehicle.getMake() + "," + vehicle.getModelYear() + "," + vehicle.getPrice() + "," + vehicle.getColor() + "," + vehicle.getFuelType()
+					 + "," + vehicle.getMileage() + "," + vehicle.getMass() + "," + vehicle.getCylinders() + "," + vehicle.getGasTankCapacity() + "," + vehicle.getStartType());
+					bw.newLine();
+	            }
+	            else if(vehicle instanceof Truck)
+	            {
+	            	String type = "Truck";
+					bw.write(type + "," + vehicle.getBrand() + "," + vehicle.getMake() + "," + vehicle.getModelYear() + "," + vehicle.getPrice() + "," + vehicle.getColor() + "," + vehicle.getFuelType()
+					 + "," + vehicle.getMileage() + "," + vehicle.getMass() + "," + vehicle.getCylinders() + "," + vehicle.getGasTankCapacity() + "," + vehicle.getStartType());
+					bw.newLine();
+	            }
+					
+			}
+			bw.close();
+			file.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+				return false;
+			}
+		return true;
+	}
 }
