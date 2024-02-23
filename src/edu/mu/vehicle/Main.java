@@ -33,6 +33,22 @@ public class Main {
 	        } else {
 	            System.out.println("\nAverage Fuel Efficiency of SUVs: " + averageFuelEfficiencyOfSUVs);
 	        }
+		Vehicle HighestMaintenance = VehicleManager.getInstance().getVehicleWithHighestMaintenanceCost(300);
+	        if (HighestMaintenance != null) {
+	        	System.out.println("Vehicle with highest maintenance cost: " + HighestMaintenance.brand + " " + HighestMaintenance.make);
+	            System.out.println("Maintenance cost: $" + HighestMaintenance.calculateMaintenanceCost(300) + "0");
+	        } else {
+	            System.out.println("No vehicles found in the list.");
+	        }
+	        
+	        
+	        Vehicle LowestMaintenance = VehicleManager.getInstance().getVehicleWithLowestMaintenanceCost(300);
+	        if (LowestMaintenance != null) {
+	        	System.out.println("Vehicle with lowest maintenance cost: " + LowestMaintenance.brand + " " + LowestMaintenance.make);
+	            System.out.println("Maintenance cost: $" + LowestMaintenance.calculateMaintenanceCost(300) + "0");
+	        } else {
+	            System.out.println("No vehicles found in the list.");
+	        }
 	}
 
 }
