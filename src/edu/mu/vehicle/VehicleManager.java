@@ -258,7 +258,7 @@ public class VehicleManager {
  	
  	    for (Vehicle vehicle : vehicleList) {
  	        double maintenanceCost = vehicle.calculateMaintenanceCost(distance);
- 	        if (maintenanceCost > LowestMaintenanceCost) {
+ 	        if (maintenanceCost < LowestMaintenanceCost) {
  	        	vehicleWithLowestMaintenanceCost = vehicle;
  	        	LowestMaintenanceCost = maintenanceCost;
  	        } else if (maintenanceCost == LowestMaintenanceCost) {
@@ -277,7 +277,7 @@ public class VehicleManager {
  	
  	    for (Vehicle vehicle : vehicleList) {
  	        double maintenanceCost = vehicle.calculateMaintenanceCost(distance);
- 	        if (maintenanceCost < HighestMaintenanceCost) {
+ 	        if (maintenanceCost > HighestMaintenanceCost) {
  	        	vehicleWithHighestMaintenanceCost = vehicle;
  	        	HighestMaintenanceCost = maintenanceCost;
  	        } else if (maintenanceCost == HighestMaintenanceCost) {
