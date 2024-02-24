@@ -62,5 +62,8 @@ public class Main {
 	        } else {
 	            System.out.println("No vehicles found in the list.");
 	        }
+		
+		VehicleManager.getInstance().displayVehicleInformation();
+
 	}
 }
