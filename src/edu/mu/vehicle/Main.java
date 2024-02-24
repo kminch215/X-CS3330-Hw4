@@ -21,7 +21,8 @@ public class Main {
 	        
 	    VehicleManager.getInstance().displayAllMotorBikeInformation();
 	        
-			
+        Truck car = new Truck("Honda", "Accord", 2022, 120000.0, VehicleColor.GRAY, FuelType.DIESEL, 18000, 5.0, 16, 50.0, StartMechanism.KEYSTART);
+        VehicleManager.getInstance().addVehicle(car);	
 		// Determines vehicle with highest fuel efficiency
 		ArrayList<Vehicle> bestFuelEfficiency = VehicleManager.getInstance().getVehicleWithHighestFuelEfficiency(300, 3.25);
 		System.out.println("Vehicle(s) with the highest fuel efficiency: ");
@@ -43,6 +44,8 @@ public class Main {
 	            System.out.println("\nAverage Fuel Efficiency of SUVs: " + averageFuelEfficiencyOfSUVs);
 	        }
 	        
+
+	        
 	        Vehicle HighestMaintenance = VehicleManager.getInstance().getVehicleWithHighestMaintenanceCost(300);
 	        if (HighestMaintenance != null) {
 	        	System.out.println("Vehicle with highest maintenance cost: " + HighestMaintenance.brand + " " + HighestMaintenance.make);
@@ -61,8 +64,7 @@ public class Main {
 	        
 	        VehicleManager.getInstance().displayAllVehicleInformation();
 	        
-	        Car car = new Car("Honda", "Accord", 2007, 9000.0, VehicleColor.GRAY, FuelType.GASOLINE, 45000, 0.3, 6, 16.0, StartMechanism.KEYSTART);
-	        VehicleManager.getInstance().addVehicle(car);
+
 	        VehicleManager.getInstance().displayVehicleInformation(car);
 	        VehicleManager.getInstance().saveVehicleList();
 	        int count = VehicleManager.getInstance().getNumberOfVehiclesByType(Car.class);
