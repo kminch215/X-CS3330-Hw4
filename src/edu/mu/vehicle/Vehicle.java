@@ -1,5 +1,7 @@
 package edu.mu.vehicle;
 
+import java.util.Objects;
+
 public abstract class Vehicle {
 
 		protected String brand;
@@ -18,6 +20,27 @@ public abstract class Vehicle {
 		public abstract double calculateMaintenanceCost(double distance);
 		public abstract double calculateFuelEfficiency(double distance, double fuelPrice);
 		public abstract void startEngine();
+
+		@Override
+		public boolean equals(Object obj) {
+			if (this == obj)
+				return true;
+			if (obj == null)
+				return false;
+			if (getClass() != obj.getClass())
+				return false;
+			Vehicle other = (Vehicle) obj;
+			return Objects.equals(brand, other.brand) && color == other.color && cylinders == other.cylinders
+					&& fuelType == other.fuelType
+					&& Double.doubleToLongBits(gasTankCapacity) == Double.doubleToLongBits(other.gasTankCapacity)
+					&& Objects.equals(make, other.make)
+					&& Double.doubleToLongBits(mass) == Double.doubleToLongBits(other.mass)
+					&& Double.doubleToLongBits(mileage) == Double.doubleToLongBits(other.mileage)
+					&& modelYear == other.modelYear
+					&& Double.doubleToLongBits(price) == Double.doubleToLongBits(other.price)
+					&& startType == other.startType;
+		}
+
 		
 		//toString() method
 		@Override
