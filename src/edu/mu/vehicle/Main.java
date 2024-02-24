@@ -75,6 +75,8 @@ public class Main {
 	        
 	        int count2 = VehicleManager.getInstance().getNumberOfVehiclesByType(Car.class);
 	        System.out.println("Car Count: " + count2);
+	        
+	        
         
 	}
 }

@@ -31,7 +31,7 @@ public class Car extends Vehicle {
 
 	@Override
 	public void startEngine() {
-		startType = StartMechanism.PUSHSTART;
+		System.out.println("This vehicle has start type: " + StartMechanism.PUSHSTART);
 	}
 
 	

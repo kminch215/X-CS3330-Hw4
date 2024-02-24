@@ -31,7 +31,7 @@ public class MotorBike extends Vehicle {
 
 	@Override
 	public void startEngine() {
-		startType = StartMechanism.KICKSTART;
+		System.out.println("This vehicle has start type: " + StartMechanism.KICKSTART);
 		
 	}
 

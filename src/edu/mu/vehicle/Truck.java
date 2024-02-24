@@ -31,7 +31,7 @@ public class Truck extends Vehicle {
 
 	@Override
 	public void startEngine() {
-		this.startType = StartMechanism.KEYSTART;
+		System.out.println("This vehicle has start type: " + StartMechanism.KEYSTART);
 	}
 	
 
