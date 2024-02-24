@@ -14,6 +14,12 @@ The assignment is to create a Java program for a vehicle showroom management sys
    - read the initial inventory from a CSV file (vehicleList.csv) during initialization, update existing items, add new items, remove items, and save the updated inventory back to the CSV file.
    - Additionally, we have our initializeStock, displayAllCarInformation, displayAllTruckInformation, displayAllSUVInformation, displayAllMotorBikeInformation, displayVehicleInformation, displayAllVehicleInformation, removeVehicle, addVehicle, saveVehicleList, isVehicleType, getNumberOfVehichlesByType, getVehicleWithHighestMaintenanceCost, getVehicleWithLowestMaintenanceCost, getVehicleWithHighestFuelEfficiency, getVehicleWithLowestFuelEfficiency, and getAverageFuelEfficiencyOfSUVs methods implemented here.
 
+### Group Contributions:
+- Lane: Implement addVehicle(), removeVehicle(), isVehicleType(), getNumberOfVehiclesByType(), and getVehicleWithHighestMaintenanceCost() in VehicleManager class.
+- Sarah: Implement displayAllCarInformation(), displayAllTruckInformation(), displayAllSUVInformation(), displayAllMotorBikeInformation(), displayVehicleInformation(), displayAllVehicleInformation(), getVehicleWithLowestMaintenanceCost, and getAverageFuelEfficiency() in VehicleManager class.
+- Kendra: Set up all the files, implement singleton-specific methods in VehicleManager class, fully implement Vehicle class including attributes, getters/setters, and methods (calculateMaintenanceCost(), calculateFuelEfficiency(), startEngine()), and write README file. Help do final tests before submission.
+- Samantha: Implement readFromFile(), VehicleManager() constructor, saveVehicleList(), getVehicleWithHighestFuelEfficiency(), getVehicleWithLowestFuelEfficiency() in VehicleManager class. Help do final tests before submission.
+
 ### How to run:
 1. First make sure to have a way to compile and run Java files. It also might help to have an IDE like Eclipse to run the code.
 2. Implement a syntactically and logically correct program to put in the main() method in the Main Class. This method is going to be accessing the `VehicleManager` class and calling the different methods to manage the vehicle showroom management system.
