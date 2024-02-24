@@ -231,7 +231,7 @@ public class VehicleManager {
  	
  	    for (Vehicle vehicle : vehicleList) {
  	        double maintenanceCost = vehicle.calculateMaintenanceCost(distance);
- 	        if (maintenanceCost < LowestMaintenanceCost) {
+ 	        if (maintenanceCost > LowestMaintenanceCost) {
  	        	vehicleWithLowestMaintenanceCost = vehicle;
  	        	LowestMaintenanceCost = maintenanceCost;
  	        } else if (maintenanceCost == LowestMaintenanceCost) {
@@ -251,7 +251,7 @@ public class VehicleManager {
  	    for (Vehicle vehicle : vehicleList) {
  	        double maintenanceCost = vehicle.calculateMaintenanceCost(distance);
 // 	        System.out.println(vehicle.toString() + '\n' + "Maintenance Cost: " + maintenanceCost);
- 	        if (maintenanceCost > HighestMaintenanceCost) {
+ 	        if (maintenanceCost < HighestMaintenanceCost) {
  	        	vehicleWithHighestMaintenanceCost = vehicle;
  	        	HighestMaintenanceCost = maintenanceCost;
  	        } else if (maintenanceCost == HighestMaintenanceCost) {
@@ -264,25 +264,102 @@ public class VehicleManager {
  		return vehicleWithHighestMaintenanceCost;
      }
 
-    public void displayAllCarInformation() {
-        boolean foundCar = false;
+    public StringBuilder displayAllCarInformation(double distance, double fuelPrice) {
+        StringBuilder carInformation = new StringBuilder();
+        int carCount = 0;
 
         for (Vehicle vehicle : vehicleList) {
             if (vehicle instanceof Car) {
-                foundCar = true;
-
-                System.out.println(vehicle.toString());
-                
-                System.out.println("Maintenance Cost: " + vehicle.calculateMaintenanceCost(distance));
-                
-                System.out.println("Fuel Efficiency: " + vehicle.calculateFuelEfficiency(distance, fuelPrice));
+                carCount++;
+                carInformation.append(vehicle.toString()).append("\n");
+                carInformation.append("Maintenance Cost: ").append(vehicle.calculateMaintenanceCost(distance)).append("\n");
+                carInformation.append("Fuel Efficiency: ").append(vehicle.calculateFuelEfficiency(distance, fuelPrice)).append("\n");
+                carInformation.append("Vehicle Start: ").append(vehicle.getStartType()).append("\n");
             }
         }
-        if (!foundCar) {
-            System.out.println("No cars found.");
+
+        carInformation.append("Total Cars: ").append(carCount).append("\n\n");
+        
+        if (carCount == 0) {
+            return carInformation.append("no cars found");
+        }
+        
+        return carInformation;
+        }
+    
+    public StringBuilder displayAllTruckInformation(double distance, double fuelPrice) {
+        StringBuilder truckInformation = new StringBuilder();
+        int truckCount = 0;
+
+        for (Vehicle vehicle : vehicleList) {
+            if (vehicle instanceof Truck) {
+                truckCount++;
+                truckInformation.append(vehicle.toString()).append("\n");
+                truckInformation.append("Maintenance Cost: ").append(vehicle.calculateMaintenanceCost(distance)).append("\n");
+                truckInformation.append("Fuel Efficiency: ").append(vehicle.calculateFuelEfficiency(distance, fuelPrice)).append("\n");
+                truckInformation.append("Vehicle Start: ").append(vehicle.getStartType()).append("\n");
+            }
         }
 
-    }
+        truckInformation.append("Total Trucks: ").append(truckCount).append("\n\n");
+        
+        if (truckCount == 0) {
+            return truckInformation.append("no trucks found");
+        }
+        
+        return truckInformation;
+        }
+    
+    public StringBuilder displayAllSUVInformation(double distance, double fuelPrice) {
+        StringBuilder SUVInformation = new StringBuilder();
+        int SUVCount = 0;
+
+        for (Vehicle vehicle : vehicleList) {
+            if (vehicle instanceof SUV) {
+                SUVCount++;
+                SUVInformation.append(vehicle.toString()).append("\n");
+                SUVInformation.append("Maintenance Cost: ").append(vehicle.calculateMaintenanceCost(distance)).append("\n");
+                SUVInformation.append("Fuel Efficiency: ").append(vehicle.calculateFuelEfficiency(distance, fuelPrice)).append("\n");
+                SUVInformation.append("Vehicle Start: ").append(vehicle.getStartType()).append("\n");
+            }
+        }
+
+        SUVInformation.append("Total SUVs: ").append(SUVCount).append("\n\n");
+        
+        if (SUVCount == 0) {
+            return SUVInformation.append("no SUVs found");
+        }
+        
+        return SUVInformation;
+        }
+    
+    public StringBuilder displayAllMotorBikeInformation(double distance, double fuelPrice) {
+        StringBuilder MotorBikeInformation = new StringBuilder();
+        int MotorBikeCount = 0;
+
+        for (Vehicle vehicle : vehicleList) {
+            if (vehicle instanceof MotorBike) {
+            	MotorBikeCount++;
+                MotorBikeInformation.append(vehicle.toString()).append("\n");
+                MotorBikeInformation.append("Maintenance Cost: ").append(vehicle.calculateMaintenanceCost(distance)).append("\n");
+                MotorBikeInformation.append("Fuel Efficiency: ").append(vehicle.calculateFuelEfficiency(distance, fuelPrice)).append("\n");
+                MotorBikeInformation.append("Vehicle Start: ").append(vehicle.getStartType()).append("\n");
+            }
+        }
+
+        MotorBikeInformation.append("Total MotorBikes: ").append(MotorBikeCount).append("\n\n");
+
+        if (MotorBikeCount == 0) {
+            return MotorBikeInformation.append("no motorbikes found");
+        }
+        
+        return MotorBikeInformation;
+        }
+    
+    public void displayVehicleInformation(Vehicle v) {
+		System.out.println(/*Information, MaintenceCost, FuelEffeciency, VehicleStart, PresentInList*/);
+		System.out.println(/*if vehicle not found, print error*/);
+	}
     
     public boolean saveVehicleList() {
 		try {
