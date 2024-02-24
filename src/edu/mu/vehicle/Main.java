@@ -1,16 +1,17 @@
 package edu.mu.vehicle;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Main {
 
 	public static void main(String[] args) {
 		VehicleManager.getInstance();
-	    
+	   
 		// Read vehicle data from the vehicleList.csv file and initialize objects.
 		boolean error = VehicleManager.getInstance().initializeStock();
 		if(!error) {
-			System.out.println("Error initializing vehicle stock from file");
+		System.out.println("Error initializing vehicle stock from file");
 		}
 		
 	        StringBuilder allCarInformation = VehicleManager.getInstance().displayAllCarInformation(300, 3.25);
@@ -24,22 +25,22 @@ public class Main {
 	        
 	        StringBuilder allMotorBikeInformation = VehicleManager.getInstance().displayAllMotorBikeInformation(300, 3.25);
 	        System.out.println(allMotorBikeInformation);
-        
-		
+	        
+			
 		// Determines vehicle with highest fuel efficiency
 		ArrayList<Vehicle> bestFuelEfficiency = VehicleManager.getInstance().getVehicleWithHighestFuelEfficiency(300, 3.25);
 		System.out.println("Vehicle(s) with the highest fuel efficiency: ");
 		for(Vehicle vehicle : bestFuelEfficiency) {
 			System.out.println(vehicle.toString());
 		}
-		
+			
 		// Determines vehicle with lowest fuel efficiency
 		ArrayList<Vehicle> worstFuelEfficiency = VehicleManager.getInstance().getVehicleWithLowestFuelEfficiency(300, 3.25);
 		System.out.println("Vehicle(s) with the lowest fuel efficiency: ");
 		for(Vehicle vehicle : worstFuelEfficiency) {
 			System.out.println(vehicle.toString());
 		}
-		
+			
 		double averageFuelEfficiencyOfSUVs = VehicleManager.getInstance().getAverageFuelEfficiencyOfSUVs(300, 3.25);
 	        if (averageFuelEfficiencyOfSUVs == -1.0) {
 	            System.out.println("\nNo SUVs in the list to calculate average fuel efficiency.");
@@ -62,8 +63,11 @@ public class Main {
 	        } else {
 	            System.out.println("No vehicles found in the list.");
 	        }
-		
-		VehicleManager.getInstance().displayVehicleInformation();
+	        
+	        VehicleManager.getInstance().displayAllVehicleInformation();
 
+	        VehicleManager.getInstance().displayVehicleInformation();
+        
+        
 	}
 }
