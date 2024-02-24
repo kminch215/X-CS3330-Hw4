@@ -89,9 +89,6 @@ public class VehicleManager {
 	            VehicleManager.getInstance().addVehicle(vehicle);
 	        }
 	        scanner.close();
-//	        if(file.delete()) {
-//	        	System.out.println("File successfully deleted!");
-//	        }
 	    } catch (FileNotFoundException e) {
 	        System.out.println("File not found");
 	        e.printStackTrace();
@@ -162,17 +159,9 @@ public class VehicleManager {
     		}
     		else if(fuelEfficiency1 == fuelEfficiency2) {
     			myVehicles.add(vehicle);
-    		}
-    		
-    		
-//    		for(Vehicle vehicle1 : myVehicles) {
-//        		System.out.println(vehicle1.toString());
-//    		}
-
-    		
+    		}	
     	}
-		return myVehicles;
-    	
+		return myVehicles;	
     }
     
     public ArrayList<Vehicle> getVehicleWithLowestFuelEfficiency(double distance, double fuelPrice){
@@ -223,7 +212,7 @@ public class VehicleManager {
  	
  	    for (Vehicle vehicle : vehicleList) {
  	        double maintenanceCost = vehicle.calculateMaintenanceCost(distance);
- 	        if (maintenanceCost > LowestMaintenanceCost) {
+ 	        if (maintenanceCost < LowestMaintenanceCost) {
  	        	vehicleWithLowestMaintenanceCost = vehicle;
  	        	LowestMaintenanceCost = maintenanceCost;
  	        } else if (maintenanceCost == LowestMaintenanceCost) {
@@ -243,7 +232,7 @@ public class VehicleManager {
  	    for (Vehicle vehicle : vehicleList) {
  	        double maintenanceCost = vehicle.calculateMaintenanceCost(distance);
 // 	        System.out.println(vehicle.toString() + '\n' + "Maintenance Cost: " + maintenanceCost);
- 	        if (maintenanceCost < HighestMaintenanceCost) {
+ 	        if (maintenanceCost > HighestMaintenanceCost) {
  	        	vehicleWithHighestMaintenanceCost = vehicle;
  	        	HighestMaintenanceCost = maintenanceCost;
  	        } else if (maintenanceCost == HighestMaintenanceCost) {
@@ -256,96 +245,67 @@ public class VehicleManager {
  		return vehicleWithHighestMaintenanceCost;
      }
 
-    public StringBuilder displayAllCarInformation(double distance, double fuelPrice) {
-        StringBuilder carInformation = new StringBuilder();
+    public void displayAllCarInformation() {
         int carCount = 0;
 
         for (Vehicle vehicle : vehicleList) {
             if (vehicle instanceof Car) {
                 carCount++;
-                carInformation.append(vehicle.toString()).append("\n");
-                carInformation.append("Maintenance Cost: ").append(vehicle.calculateMaintenanceCost(distance)).append("\n");
-                carInformation.append("Fuel Efficiency: ").append(vehicle.calculateFuelEfficiency(distance, fuelPrice)).append("\n");
-                carInformation.append("Vehicle Start: ").append(vehicle.getStartType()).append("\n");
+                System.out.println(vehicle.toString());
+                System.out.println("Maintenance Cost: $" + vehicle.calculateMaintenanceCost(distance));
+                System.out.println("Fuel Efficiency: " + vehicle.calculateFuelEfficiency(distance, fuelPrice));
+                System.out.println("Vehicle Start Type: " + vehicle.getStartType());
             }
         }
 
-        carInformation.append("Total Cars: ").append(carCount).append("\n\n");
-        
-        if (carCount == 0) {
-            return carInformation.append("no cars found");
-        }
-        
-        return carInformation;
+        System.out.println("Total Number of Cars: " + carCount + '\n' + '\n');
         }
     
-    public StringBuilder displayAllTruckInformation(double distance, double fuelPrice) {
-        StringBuilder truckInformation = new StringBuilder();
+    public void displayAllTruckInformation() {
         int truckCount = 0;
 
         for (Vehicle vehicle : vehicleList) {
             if (vehicle instanceof Truck) {
                 truckCount++;
-                truckInformation.append(vehicle.toString()).append("\n");
-                truckInformation.append("Maintenance Cost: ").append(vehicle.calculateMaintenanceCost(distance)).append("\n");
-                truckInformation.append("Fuel Efficiency: ").append(vehicle.calculateFuelEfficiency(distance, fuelPrice)).append("\n");
-                truckInformation.append("Vehicle Start: ").append(vehicle.getStartType()).append("\n");
+                System.out.println(vehicle.toString());
+                System.out.println("Maintenance Cost: $" + vehicle.calculateMaintenanceCost(distance));
+                System.out.println("Fuel Efficiency: " + vehicle.calculateFuelEfficiency(distance, fuelPrice));
+                System.out.println("Vehicle Start Type: " + vehicle.getStartType());
             }
         }
-
-        truckInformation.append("Total Trucks: ").append(truckCount).append("\n\n");
-        
-        if (truckCount == 0) {
-            return truckInformation.append("no trucks found");
-        }
-        
-        return truckInformation;
+        System.out.println("Total Number of Trucks: " + truckCount + '\n' + '\n');
         }
     
-    public StringBuilder displayAllSUVInformation(double distance, double fuelPrice) {
-        StringBuilder SUVInformation = new StringBuilder();
+    public void displayAllSUVInformation() {
         int SUVCount = 0;
 
         for (Vehicle vehicle : vehicleList) {
             if (vehicle instanceof SUV) {
                 SUVCount++;
-                SUVInformation.append(vehicle.toString()).append("\n");
-                SUVInformation.append("Maintenance Cost: ").append(vehicle.calculateMaintenanceCost(distance)).append("\n");
-                SUVInformation.append("Fuel Efficiency: ").append(vehicle.calculateFuelEfficiency(distance, fuelPrice)).append("\n");
-                SUVInformation.append("Vehicle Start: ").append(vehicle.getStartType()).append("\n");
+                System.out.println(vehicle.toString());
+                System.out.println("Maintenance Cost: $" + vehicle.calculateMaintenanceCost(distance));
+                System.out.println("Fuel Efficiency: " + vehicle.calculateFuelEfficiency(distance, fuelPrice));
+                System.out.println("Vehicle Start Type: " + vehicle.getStartType());
             }
         }
 
-        SUVInformation.append("Total SUVs: ").append(SUVCount).append("\n\n");
-        
-        if (SUVCount == 0) {
-            return SUVInformation.append("no SUVs found");
-        }
-        
-        return SUVInformation;
+        System.out.println("Total Number of SUVs: " + SUVCount + '\n' + '\n');
         }
     
-    public StringBuilder displayAllMotorBikeInformation(double distance, double fuelPrice) {
-        StringBuilder MotorBikeInformation = new StringBuilder();
+    public void displayAllMotorBikeInformation() {
         int MotorBikeCount = 0;
 
         for (Vehicle vehicle : vehicleList) {
             if (vehicle instanceof MotorBike) {
             	MotorBikeCount++;
-                MotorBikeInformation.append(vehicle.toString()).append("\n");
-                MotorBikeInformation.append("Maintenance Cost: ").append(vehicle.calculateMaintenanceCost(distance)).append("\n");
-                MotorBikeInformation.append("Fuel Efficiency: ").append(vehicle.calculateFuelEfficiency(distance, fuelPrice)).append("\n");
-                MotorBikeInformation.append("Vehicle Start: ").append(vehicle.getStartType()).append("\n");
+            	System.out.println(vehicle.toString());
+                System.out.println("Maintenance Cost: $" + vehicle.calculateMaintenanceCost(distance));
+                System.out.println("Fuel Efficiency: " + vehicle.calculateFuelEfficiency(distance, fuelPrice));
+                System.out.println("Vehicle Start Type: " + vehicle.getStartType());
             }
         }
 
-        MotorBikeInformation.append("Total MotorBikes: ").append(MotorBikeCount).append("\n\n");
-
-        if (MotorBikeCount == 0) {
-            return MotorBikeInformation.append("no motorbikes found");
-        }
-        
-        return MotorBikeInformation;
+        System.out.println("Total Number of MotorBikes: " + MotorBikeCount + '\n' + '\n');
         }
     
     public boolean saveVehicleList() {
@@ -393,41 +353,36 @@ public class VehicleManager {
 		return true;
 	}
 
-	public ArrayList<Vehicle> displayAllVehicleInformation() {
+	public void displayAllVehicleInformation() {
     	System.out.println("\n\nAll Vehicles:");
         for (Vehicle vehicle : vehicleList) {
             System.out.println(vehicle.toString());
-            System.out.println("Maintenance Cost: " + vehicle.calculateMaintenanceCost(distance));
+            System.out.println("Maintenance Cost: $" + vehicle.calculateMaintenanceCost(distance));
             System.out.println("Fuel Efficiency: " + vehicle.calculateFuelEfficiency(distance, fuelPrice));
             System.out.println("Vehicle Start: " + vehicle.getStartType());
             System.out.println();
         }
-		return vehicleList;
+        if(vehicleList.isEmpty()) {
+        	System.out.println("There are no vehicles in the list");
+        }
     }
     
-    public void displayVehicleInformation() {
-        Scanner scanner = new Scanner(System.in);
-        
-        System.out.println("Please enter a vehicle name: ");
-        String vehicleName = scanner.nextLine();
+    public void displayVehicleInformation(Vehicle v) {
 
-        boolean foundVehicle = false;
+    	boolean foundVehicle = false;
         for (Vehicle vehicle : vehicleList) {
-            if (vehicle.make.equalsIgnoreCase(vehicleName)) {
-                foundVehicle = true;
+            if (vehicle.equals(v)) {
+            	foundVehicle = true;
                 System.out.println("Vehicle Information:");
                 System.out.println(vehicle.toString());
-                System.out.println("Maintenance Cost: " + vehicle.calculateMaintenanceCost(distance));
+                System.out.println("Maintenance Cost: $" + vehicle.calculateMaintenanceCost(distance));
                 System.out.println("Fuel Efficiency: " + vehicle.calculateFuelEfficiency(distance, fuelPrice));
                 System.out.println("Vehicle Start: " + vehicle.getStartType());
-                break;
             }
         }
 
         if (!foundVehicle) {
             System.out.println("Error: Vehicle not found in the list.");
         }
-        
-        scanner.close();
     }
 }
