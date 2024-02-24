@@ -101,17 +101,19 @@ public class VehicleManager {
     }
     
     public boolean addVehicle(Vehicle vehicle) {
-		if (!vehicleList.contains(vehicle)) {
-			vehicleList.add(vehicle);
-			return true;
-		}
+    		if (!vehicleList.contains(vehicle)){
+    			vehicleList.add(vehicle);
+    			return true;
+    		}
 		return false;
 	}
 
     public boolean removeVehicle(Vehicle vehicle) {
-		if (vehicleList.contains(vehicle)){
-			vehicleList.remove(vehicle);
-			return true;
+    	for(Vehicle v : vehicleList) {
+    		if (v.equals(vehicle)){
+    			vehicleList.remove(vehicle);
+    			return true;
+    		}
 		}
 		return false;
 	}
