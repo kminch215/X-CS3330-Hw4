@@ -101,7 +101,7 @@ public class VehicleManager {
     }
     
     public boolean addVehicle(Vehicle vehicle) {
-    		if (!vehicleList.contains(vehicle)){
+    		if (!vehicleList.contains(vehicle)) {
     			vehicleList.add(vehicle);
     			return true;
     		}
@@ -180,7 +180,7 @@ public class VehicleManager {
     	fuelPrice = VehicleManager.fuelPrice;
     	ArrayList<Vehicle> myVehicles = new ArrayList<Vehicle>();
 		double fuelEfficiency1 = 0.0;
-		double fuelEfficiency2 = 100.0; //initialized to value larger than will ever occur
+		double fuelEfficiency2 = 100.0;
     	for(Vehicle vehicle: VehicleManager.getInstance().getArray()) {
 
     		fuelEfficiency1 = vehicle.calculateFuelEfficiency(distance, fuelPrice);
@@ -193,33 +193,25 @@ public class VehicleManager {
     		else if(fuelEfficiency1 == fuelEfficiency2) {
     			myVehicles.add(vehicle);
     		}	
-
     	}
-		return myVehicles;
-    	
+		return myVehicles; 	
     }
     
     public double getAverageFuelEfficiencyOfSUVs(double distance, double fuelPrice) {
         int suvCount = 0;
         double totalFuelEfficiency = 0.0;
         
-        // Iterate over all vehicles in the vehicle list
         for (Vehicle vehicle : vehicleList) {
-            // Check if the vehicle is an SUV
             if (vehicle instanceof SUV) {
-                // Increment count of SUVs
                 suvCount++;
-                // Calculate fuel efficiency of the SUV and add to total
                 totalFuelEfficiency += vehicle.calculateFuelEfficiency(distance, fuelPrice);
             }
         }
         
-        // If no SUVs exist in the list, return -1.0 as an error code
         if (suvCount == 0) {
             return -1.0;
         }
         
-        // Calculate average fuel efficiency of SUVs
         double averageFuelEfficiency = totalFuelEfficiency / suvCount;
         
         return averageFuelEfficiency;
