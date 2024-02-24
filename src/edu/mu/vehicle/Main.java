@@ -1,7 +1,6 @@
 package edu.mu.vehicle;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Main {
 
@@ -14,17 +13,13 @@ public class Main {
 		System.out.println("Error initializing vehicle stock from file");
 		}
 		
-	        StringBuilder allCarInformation = VehicleManager.getInstance().displayAllCarInformation(300, 3.25);
-	        System.out.println(allCarInformation);
+		VehicleManager.getInstance().displayAllCarInformation();
 	        
-	        StringBuilder allTruckInformation = VehicleManager.getInstance().displayAllTruckInformation(300, 3.25);
-	        System.out.println(allTruckInformation);
+	    VehicleManager.getInstance().displayAllTruckInformation();
 	        
-	        StringBuilder allSUVInformation = VehicleManager.getInstance().displayAllSUVInformation(300, 3.25);
-	        System.out.println(allSUVInformation);
+	    VehicleManager.getInstance().displayAllSUVInformation();
 	        
-	        StringBuilder allMotorBikeInformation = VehicleManager.getInstance().displayAllMotorBikeInformation(300, 3.25);
-	        System.out.println(allMotorBikeInformation);
+	    VehicleManager.getInstance().displayAllMotorBikeInformation();
 	        
 			
 		// Determines vehicle with highest fuel efficiency
@@ -65,8 +60,10 @@ public class Main {
 	        }
 	        
 	        VehicleManager.getInstance().displayAllVehicleInformation();
-
-	        VehicleManager.getInstance().displayVehicleInformation();
+	        
+	        Car car = new Car("Honda", "Accord", 2007, 9000.0, VehicleColor.GRAY, FuelType.GASOLINE, 45000, 0.3, 6, 16.0, StartMechanism.KEYSTART);
+	        VehicleManager.getInstance().addVehicle(car);
+	        VehicleManager.getInstance().displayVehicleInformation(car);
         
         
 	}
