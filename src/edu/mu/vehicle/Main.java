@@ -13,6 +13,19 @@ public class Main {
 			System.out.println("Error initializing vehicle stock from file");
 		}
 		
+	        StringBuilder allCarInformation = VehicleManager.getInstance().displayAllCarInformation(300, 3.25);
+	        System.out.println(allCarInformation);
+	        
+	        StringBuilder allTruckInformation = VehicleManager.getInstance().displayAllTruckInformation(300, 3.25);
+	        System.out.println(allTruckInformation);
+	        
+	        StringBuilder allSUVInformation = VehicleManager.getInstance().displayAllSUVInformation(300, 3.25);
+	        System.out.println(allSUVInformation);
+	        
+	        StringBuilder allMotorBikeInformation = VehicleManager.getInstance().displayAllMotorBikeInformation(300, 3.25);
+	        System.out.println(allMotorBikeInformation);
+        
+		
 		// Determines vehicle with highest fuel efficiency
 		ArrayList<Vehicle> bestFuelEfficiency = VehicleManager.getInstance().getVehicleWithHighestFuelEfficiency(300, 3.25);
 		System.out.println("Vehicle(s) with the highest fuel efficiency: ");
@@ -20,7 +33,7 @@ public class Main {
 			System.out.println(vehicle.toString());
 		}
 		
-//		 Determines vehicle with lowest fuel efficiency
+		// Determines vehicle with lowest fuel efficiency
 		ArrayList<Vehicle> worstFuelEfficiency = VehicleManager.getInstance().getVehicleWithLowestFuelEfficiency(300, 3.25);
 		System.out.println("Vehicle(s) with the lowest fuel efficiency: ");
 		for(Vehicle vehicle : worstFuelEfficiency) {
@@ -33,14 +46,14 @@ public class Main {
 	        } else {
 	            System.out.println("\nAverage Fuel Efficiency of SUVs: " + averageFuelEfficiencyOfSUVs);
 	        }
-		Vehicle HighestMaintenance = VehicleManager.getInstance().getVehicleWithHighestMaintenanceCost(300);
+	        
+	        Vehicle HighestMaintenance = VehicleManager.getInstance().getVehicleWithHighestMaintenanceCost(300);
 	        if (HighestMaintenance != null) {
 	        	System.out.println("Vehicle with highest maintenance cost: " + HighestMaintenance.brand + " " + HighestMaintenance.make);
 	            System.out.println("Maintenance cost: $" + HighestMaintenance.calculateMaintenanceCost(300) + "0");
 	        } else {
 	            System.out.println("No vehicles found in the list.");
 	        }
-	        
 	        
 	        Vehicle LowestMaintenance = VehicleManager.getInstance().getVehicleWithLowestMaintenanceCost(300);
 	        if (LowestMaintenance != null) {
@@ -50,5 +63,4 @@ public class Main {
 	            System.out.println("No vehicles found in the list.");
 	        }
 	}
-
 }
