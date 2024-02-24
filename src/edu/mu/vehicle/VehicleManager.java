@@ -347,34 +347,6 @@ public class VehicleManager {
         
         return MotorBikeInformation;
         }
-	
-	
-    public void displayVehicleInformation() {
-        Scanner scanner = new Scanner(System.in);
-        
-        System.out.println("Please enter a vehicle name: ");
-        String vehicleName = scanner.nextLine();
-
-        boolean foundVehicle = false;
-        for (Vehicle vehicle : vehicleList) {
-            if (vehicle.make.equalsIgnoreCase(vehicleName)) {
-                foundVehicle = true;
-                System.out.println("Vehicle Information:");
-                System.out.println(vehicle.toString());
-                System.out.println("Maintenance Cost: " + vehicle.calculateMaintenanceCost(distance));
-                System.out.println("Fuel Efficiency: " + vehicle.calculateFuelEfficiency(distance, fuelPrice));
-                System.out.println("Vehicle Start: " + vehicle.getStartType());
-                System.out.println("Present in List: Yes");
-                break;
-            }
-        }
-
-        if (!foundVehicle) {
-            System.out.println("Error: Vehicle not found in the list.");
-        }
-        
-        scanner.close();
-    }
     
     public boolean saveVehicleList() {
 		try {
@@ -420,4 +392,42 @@ public class VehicleManager {
 			}
 		return true;
 	}
+
+	public ArrayList<Vehicle> displayAllVehicleInformation() {
+    	System.out.println("\n\nAll Vehicles:");
+        for (Vehicle vehicle : vehicleList) {
+            System.out.println(vehicle.toString());
+            System.out.println("Maintenance Cost: " + vehicle.calculateMaintenanceCost(distance));
+            System.out.println("Fuel Efficiency: " + vehicle.calculateFuelEfficiency(distance, fuelPrice));
+            System.out.println("Vehicle Start: " + vehicle.getStartType());
+            System.out.println();
+        }
+		return vehicleList;
+    }
+    
+    public void displayVehicleInformation() {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.println("Please enter a vehicle name: ");
+        String vehicleName = scanner.nextLine();
+
+        boolean foundVehicle = false;
+        for (Vehicle vehicle : vehicleList) {
+            if (vehicle.make.equalsIgnoreCase(vehicleName)) {
+                foundVehicle = true;
+                System.out.println("Vehicle Information:");
+                System.out.println(vehicle.toString());
+                System.out.println("Maintenance Cost: " + vehicle.calculateMaintenanceCost(distance));
+                System.out.println("Fuel Efficiency: " + vehicle.calculateFuelEfficiency(distance, fuelPrice));
+                System.out.println("Vehicle Start: " + vehicle.getStartType());
+                break;
+            }
+        }
+
+        if (!foundVehicle) {
+            System.out.println("Error: Vehicle not found in the list.");
+        }
+        
+        scanner.close();
+    }
 }
