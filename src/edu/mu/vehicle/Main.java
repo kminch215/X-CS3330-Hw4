@@ -64,7 +64,17 @@ public class Main {
 	        Car car = new Car("Honda", "Accord", 2007, 9000.0, VehicleColor.GRAY, FuelType.GASOLINE, 45000, 0.3, 6, 16.0, StartMechanism.KEYSTART);
 	        VehicleManager.getInstance().addVehicle(car);
 	        VehicleManager.getInstance().displayVehicleInformation(car);
-        
+	        VehicleManager.getInstance().saveVehicleList();
+	        int count = VehicleManager.getInstance().getNumberOfVehiclesByType(Car.class);
+	        System.out.println("Car Count: " + count);
+	        
+	        VehicleManager.getInstance().removeVehicle(car);
+	        VehicleManager.getInstance().displayVehicleInformation(car);
+	        VehicleManager.getInstance().saveVehicleList();
+
+	        
+	        int count2 = VehicleManager.getInstance().getNumberOfVehiclesByType(Car.class);
+	        System.out.println("Car Count: " + count2);
         
 	}
 }
