@@ -258,7 +258,12 @@ public class VehicleManager {
             }
         }
 
-        System.out.println("Total Number of Cars: " + carCount + '\n' + '\n');
+        if(carCount == 0) {
+        	System.out.println("There are no cars in the list.");
+        }
+        else {
+            System.out.println("Total Number of Cars: " + carCount + '\n' + '\n');
+            }
         }
     
     public void displayAllTruckInformation() {
@@ -273,7 +278,12 @@ public class VehicleManager {
                 System.out.println("Vehicle Start Type: " + vehicle.getStartType());
             }
         }
-        System.out.println("Total Number of Trucks: " + truckCount + '\n' + '\n');
+        if(truckCount == 0) {
+        	System.out.println("There are no Trucks in the list.");
+        }
+        else {
+            System.out.println("Total Number of Trucks: " + truckCount + '\n' + '\n');
+            }
         }
     
     public void displayAllSUVInformation() {
@@ -288,8 +298,12 @@ public class VehicleManager {
                 System.out.println("Vehicle Start Type: " + vehicle.getStartType());
             }
         }
-
-        System.out.println("Total Number of SUVs: " + SUVCount + '\n' + '\n');
+        if(SUVCount == 0) {
+        	System.out.println("There are no SUVs in the list.");
+        }
+        else {
+            System.out.println("Total Number of SUVs: " + SUVCount + '\n' + '\n');
+            }
         }
     
     public void displayAllMotorBikeInformation() {
@@ -304,9 +318,14 @@ public class VehicleManager {
                 System.out.println("Vehicle Start Type: " + vehicle.getStartType());
             }
         }
-
-        System.out.println("Total Number of MotorBikes: " + MotorBikeCount + '\n' + '\n');
+        if(MotorBikeCount == 0) {
+        	System.out.println("There are no MotorBikes in the list.");
         }
+        else {
+            System.out.println("Total Number of MotorBikes: " + MotorBikeCount + '\n' + '\n');
+            }
+        }
+
     
     public boolean saveVehicleList() {
 		try {
