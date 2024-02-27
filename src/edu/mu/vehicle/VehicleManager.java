@@ -154,11 +154,13 @@ public class VehicleManager {
     		
     		if(fuelEfficiency1 > fuelEfficiency2) {
     			myVehicles.clear();
-    			myVehicles.add(vehicle);
+    			Vehicle copyVehicle = (Vehicle)copyVehicle(vehicle);
+    			myVehicles.add(copyVehicle);
     			fuelEfficiency2 = fuelEfficiency1;
     		}
     		else if(fuelEfficiency1 == fuelEfficiency2) {
-    			myVehicles.add(vehicle);
+    			Vehicle copyVehicle = (Vehicle)copyVehicle(vehicle);
+    			myVehicles.add(copyVehicle);
     		}	
     	}
 		return myVehicles;	
@@ -176,12 +178,14 @@ public class VehicleManager {
     		
     		if(fuelEfficiency1 < fuelEfficiency2) {
     			myVehicles.clear();
-    			myVehicles.add(vehicle);
+    			Vehicle copyVehicle = (Vehicle)copyVehicle(vehicle);
+    			myVehicles.add(copyVehicle);
     			fuelEfficiency2 = fuelEfficiency1;
     		}
     		else if(fuelEfficiency1 == fuelEfficiency2) {
-    			myVehicles.add(vehicle);
-    		}	
+    			Vehicle copyVehicle = (Vehicle)copyVehicle(vehicle);
+    			myVehicles.add(copyVehicle);    		
+    			}	
     	}
 		return myVehicles; 	
     }
@@ -213,11 +217,13 @@ public class VehicleManager {
  	    for (Vehicle vehicle : vehicleList) {
  	        double maintenanceCost = vehicle.calculateMaintenanceCost(distance);
  	        if (maintenanceCost < LowestMaintenanceCost) {
- 	        	vehicleWithLowestMaintenanceCost = vehicle;
+ 	        	Vehicle copyVehicle = (Vehicle)copyVehicle(vehicle);
+ 	        	vehicleWithLowestMaintenanceCost = copyVehicle;
  	        	LowestMaintenanceCost = maintenanceCost;
  	        } else if (maintenanceCost == LowestMaintenanceCost) {
  	            if (random.nextBoolean()) {
- 	                vehicleWithLowestMaintenanceCost = vehicle;
+ 	            	Vehicle copyVehicle = (Vehicle)copyVehicle(vehicle);
+ 	 	        	vehicleWithLowestMaintenanceCost = copyVehicle;
  	        		return vehicleWithLowestMaintenanceCost;
  	            }
  	          }
@@ -231,13 +237,14 @@ public class VehicleManager {
  	
  	    for (Vehicle vehicle : vehicleList) {
  	        double maintenanceCost = vehicle.calculateMaintenanceCost(distance);
-// 	        System.out.println(vehicle.toString() + '\n' + "Maintenance Cost: " + maintenanceCost);
  	        if (maintenanceCost > HighestMaintenanceCost) {
- 	        	vehicleWithHighestMaintenanceCost = vehicle;
+ 	        	Vehicle copyVehicle = (Vehicle)copyVehicle(vehicle);
+ 	        	vehicleWithHighestMaintenanceCost = copyVehicle;
  	        	HighestMaintenanceCost = maintenanceCost;
  	        } else if (maintenanceCost == HighestMaintenanceCost) {
  	            if (random.nextBoolean()) {
- 	                vehicleWithHighestMaintenanceCost = vehicle;
+ 	            	Vehicle copyVehicle = (Vehicle)copyVehicle(vehicle);
+ 	 	        	vehicleWithHighestMaintenanceCost = copyVehicle;
  	        		return vehicleWithHighestMaintenanceCost;
  	            }
  	          }
@@ -403,5 +410,24 @@ public class VehicleManager {
         if (!foundVehicle) {
             System.out.println("Error: Vehicle not found in the list.");
         }
+    }
+    
+    //Helper method to create a copy of whatever vehicle object it is passes
+    public Vehicle copyVehicle(Vehicle vehicle) {
+    	if(vehicle instanceof Car) {
+    		Car copyCar = new Car(vehicle);
+    		return copyCar;
+    	}
+    	else if(vehicle instanceof Truck) {
+    		Truck copyTruck = new Truck(vehicle);
+    		return copyTruck;
+    	}
+    	else if(vehicle instanceof SUV) {
+    		SUV copySUV = new SUV(vehicle);
+    		return copySUV;
+    	}
+		MotorBike copyMotorBike = new MotorBike(vehicle);
+    	
+		return copyMotorBike;
     }
 }
